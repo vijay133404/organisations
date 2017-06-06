@@ -1,0 +1,42 @@
+<div class="container-fluid">
+<div class="update_company">
+<h1>Companies List</h1>
+<div class="table-responsive">
+<table class = "table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Country</th>
+      <th>State</th>
+      <th>City</th>
+      <th>Postcode</th>
+      <th>Start date</th>
+      <th>Active</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td><%= @country= Country.find(company.country_id).country_name%></td>
+        <td><%= @state= State.find(company.state_id).state_name%></td>
+        <td><%= @city= City.find(company.city_id).city_name%></td>
+        <td><%= company.postcode %></td>
+        <td><%= company.start_date %></td>
+        <td><%= company.active %></td>
+        <td>
+          <%= link_to 'Show', company_show_company_path(company),{:remote => true,'data-toggle' =>"modal", 'data-target'=>'#myModal',:class=>"btn btn-default"} %></td>
+        
+         
+        <td><%= link_to 'Edit', inline_edit_company_path(company),{:remote => true,'data-toggle' =>"modal", 'data-target'=>'#editmodel',:class=>"btn btn-default"} %></td>
+        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-default" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+</div>
+

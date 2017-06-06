@@ -1,0 +1,65 @@
+ <div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+  <div class="country-update-partial">
+  <h1>Countries List</h1>
+ <div class="table-responsive">
+<table class = "table table-hover"> 
+ <thead>
+    <tr>
+      <th>Country name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |country| %>
+      <tr>
+        <td><%= country.country_name %></td>
+        <td>
+          <%= link_to 'Show',country_show_country_path(country),{:remote => true,'data-toggle' =>"modal", 'data-target'=>'#myModal',:class=>"btn btn-success"} %></td>
+        
+         
+        <td><%= link_to 'Edit', country_edit_country_path(country),{:remote => true,'data-toggle' =>"modal", 'data-target'=>'#edit-country',:class=>"btn btn-success"} %></td>
+        <td><%= link_to 'Destroy', country,:class=>"btn btn-success", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ </table>
+</div>
+ <br>
+</div>
+</div>
+ 
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">User Info</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+     </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit-country" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">User update Info</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+     </div>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City name:</strong>
+  <%= @city.city_name %>
+</p>
+<h2>Comments</h2>
+
+<% @city.comments.each do |comment| %>
+  <p>
+    <strong>title:</strong>
+    <%= comment.title %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.comment %>
+  </p>
+
+<%end%>
+</div>

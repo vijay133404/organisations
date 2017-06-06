@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Listing User</h1>
+<div class="table-responsive">
+   <table class = "table table-hover">
+    <thead>
+      <tr>
+        <th>FirstName</th>
+         <th>Lastname</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Startdate</th>
+        <th>Enddate</th>
+        <th>MonthlyCharge</th>
+
+        <th>Notes</th>
+        <th>Image</th>
+        <th>Active</th>
+        <th colspan="12"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @manages.each do |manage| %>
+        <tr>
+          <td><%= manage.first_name %></td>
+          <td><%= manage.last_name %></td>
+          <td><%= manage.email %></td>
+          <td><%if manage.company_id.present?%>
+          <%= Company.find(manage.company_id).name %>
+          <% end %>
+          </td>
+          <td>
+          <%if manage.role_id.present?%>
+          <%= UserRole.find(manage.role_id).role_name %>
+          <% end %></td>
+           
+          <td><%= manage.start_date %></td>
+          <td><%= manage.end_date %></td>
+          <td><%= manage.monthly_charge %></td>
+          <td><%= raw manage.notes%></td>
+          <td><%= manage.image_id%></td>
+          <td><%= manage.active %></td>
+          <td>
+          <%= link_to 'Show', manange_show_manage_path(manage),{:remote => true,'data-toggle' =>"modal", 'data-target'=>'#myModal',:class=>"btn btn-success"} %></td>
+        
+           <td>
+           <% if user_permission_admin? %>
+            <td><%= link_to 'Edit', edit_manage_path(manage), :class=>"btn btn-success"%></td>
+               <% elsif  user_check(manage, current_user) %>
+              <td><%= link_to 'Edit', edit_manage_path(manage), :class=>"btn btn-success"%></td>
+                 <% elsif  user_permission_check(manage, current_user) %>
+              <td><%= link_to 'Edit', edit_manage_path(manage), :class=>"btn btn-success"%></td>
+            <% end%>
+          </td>
+          <td><%= link_to 'Destroy',"/manages/#{manage.id}",
+                method: :delete,
+                data: { confirm: 'Are you sure?' }, :class=>"btn btn-success" %></td>
+        </tr> 
+      <% end %>
+    </tbody>
+</table>
+</div>
+</div>
+<br>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">User Info</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+     </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+ <!DOCTYPE html> 
+        <html> 
+  <head> 
+    <title>Organisation</title> 
+    <%= csrf_meta_tags %> 
+
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+          </head> 
+        
+         
+    <body> 
+     
+    <div class="container">
+      <nav class="navbar navbar-inverse"> 
+    
+       <!-- <nav role="navigation" class="navbar navbar-default" role = "navigation">  --> 
+         <div class="navbar-header"> 
+       <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle"> 
+                <span class="sr-only">Toggle navigation</span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+            </button> 
+
+             
+              </div> 
+              <a href="/manages" class="navbar-brand">UserDetails</a> 
+             <div id="navbarCollapse" class="collapse navbar-collapse"> 
+            <ul class="nav navbar-nav navbar-left"> 
+            <% if user_signed_in? %> 
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li> 
+              <% else %> 
+
+                 <li><%= link_to "Login",user_login_places_path, {:remote => true,'data-toggle' =>"modal", 'data-target'=>'#login1'}%></li> 
+                 <li><a href="/manages/new">Sign Up</a></li> 
+              <% end%> 
+               
+              <li><%= link_to 'Company','/companies' %></li> 
+             <li><%=link_to "Add Place",new_place_path%></li>
+             <li><%= link_to 'Country','/countries' %></li> 
+                  <li><%= link_to 'State','/states' %></li> 
+                  <li><%= link_to 'City','/cities' %></li>  
+           
+              <li id="fat-menu" class="dropdown"> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                  All Show Page <b class="caret"></b> 
+                </a> 
+
+                 <ul class="dropdown-menu"> 
+                 
+                  <li><%= link_to 'UserRoles','/user_roles'%></li> 
+                  <li><%= link_to 'Places','/places'%></li> 
+                  <li><%= link_to 'Nodes','/nodes'%></li> 
+                  <li><%= link_to 'UserRoles','/user_roles'%></li> 
+
+                </ul> 
+                    
+             </ul></li> 
+             <ul class="nav navbar-nav navbar-right"> 
+                      <li id="fat-menu" class="dropdown"> 
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                        All Show New page<b class="caret"></b> 
+                      </a> 
+               <% if user_signed_in?%> 
+               <ul class="dropdown-menu"> 
+                   <li><%=link_to "New Company",new_company_path%></li> 
+                   <li><%=link_to "New Country",new_country_path%><li> 
+                   <li><%=link_to "New State",new_state_path%><li> 
+                   <li><%=link_to "New City",new_city_path%><li> 
+                   <li><%=link_to "New UserRoles",new_user_role_path%></li> 
+                   <li><%=link_to "Add User",new_manage_path%></li> 
+                   <li><%= link_to "New Nodes",new_node_path%></li> 
+                
+                   <%end%> 
+               </ul> 
+            </ul> 
+        </li> 
+    </div> 
+         
+ </nav> 
+       <p class="alert"><%= alert %></p> 
+   
+    <%= yield %> 
+  </div> 
+  </body> 
+   
+</html> 
+ <div class="modal fade" id="login1" role="dialog">
+    <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title">login </h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+     </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css"> 
+
+body{
+
+background-color: #e6f7ff; 
+} 
+.dropdown-menu li:hover { 
+    visibility: visible; 
+} 
+
+.dropdown:hover .dropdown-menu { 
+    display: block; 
+}
+
+.modal-dialog { 
+  display: table 
+} 
+
+.modal-header{
+  background-color: #3C3B37;
+  color: blue;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus { 
+    background-color:#3C3B37; 
+    color: #262626; 
+    text-decoration: none;
+  }
+
+  .navbar-default{
+    background-color: #CC3333;
+    border-color: #FFFFFF;
+
+    
+}
+}
+</style> 
+
+ 
